@@ -6,4 +6,4 @@
 4. js組み込み 参考書：[動くWebデザイン
 アイディア帳](https://coco-factory.jp/ugokuweb/)
 5. sessionStorage組み込み（アニメーション初回のみ実行）
-6. HTML完成後はWordPress実装なので以降は環境はDockerへ。
+6. HTML完成後はWordPress実装なので以降の環境はDockerへ。
