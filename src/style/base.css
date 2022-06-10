@@ -1,0 +1,242 @@
+@tailwind base;
+
+@layer base {
+  section {
+    @apply container px-2 mx-auto;
+  }
+  h1 {
+    @apply text-3xl text-center py-4 font-bold;
+  }
+  h2 {
+    @apply font-bold text-2xl text-center my-6 pt-20;
+  }
+  h3 {
+    @apply font-bold text-lg mb-2;
+  }
+  p {
+    @apply mt-4 mb-4;
+  }
+  button {
+  @apply btn btn-wide;
+  }
+  table {
+  @apply table w-full text-center;
+  }
+  i {
+  @apply pr-2;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+/* ///////// prototype split.css ///////// */
+html {
+  scroll-behavior: smooth;
+}
+
+/***********************
+layout
+***********************/
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+.sticky li a {
+  z-index: 999;
+}
+/***********************
+split
+***********************/
+.split {
+  display: table;
+  width: 100%;
+}
+.split-item {
+  display: table-cell;
+  width: 50%;
+}
+
+/***********************
+split-left
+***********************/
+.split-left {
+  background: #000;
+  color: #fff;
+  left: 0;
+  overflow: hidden;
+  position: relative;
+}
+.split-left__inner {
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  width: 50%;
+  /* color: #ccc; */
+}
+
+/***********************
+movie-wrap
+***********************/
+.movie-center {
+  height: 100%;
+  left: 50%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.main-movie {
+  height: 100vh;
+  transform: translate(-50%, 0);
+  width: auto;
+}
+.main-img {
+  visibility:hidden;
+}
+.movie-cover {
+  background: rgba(0,0,0,0.5);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/***********************
+split-left__content-wrap
+***********************/
+.split-left__content-wrap {
+  color: #fff;
+  left: 0;
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+.split-left__content__inner {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+}
+.split-left__content__inner__center {
+  transform: translate(-50%, -50%);
+}
+.split-left__content__center__logo {
+  margin: 0 auto 40px;
+}
+.split-left__content__center__title {}
+
+/***********************
+split-right
+***********************/
+.split-right {}
+
+@media screen and (max-width:1024px) {
+/***********************
+layout
+***********************/
+.sticky {}
+.sticky li a {}
+
+/***********************
+split
+***********************/
+.split {
+  display: block;
+  padding: 0;
+}
+.split-item {
+  display: block;
+  width: auto;
+}
+
+/***********************
+split-left
+***********************/
+.split-left{}
+
+.split-left__inner {
+  position: inherit;
+  width: 100%;
+}
+
+/***********************
+movie-wrap
+***********************/
+.movie-center {
+  position: inherit;
+}
+.main-movie {
+  display: none;
+}
+.main-img {
+  height: auto;
+  visibility: visible;
+  width: 100%;
+}
+.movie-cover {}
+
+/***********************
+split-left__content-wrap
+***********************/
+.split-left__content-wrap {}
+.split-left__content__inner {}
+.split-left__content__inner__center {}
+.split-left__content__center__logo {}
+.split-left__content__center__title {}
+
+/***********************
+split-right
+***********************/
+.split-right {}
+}
+
+/*========= LoadingのためのCSS ===============*/
+
+/* Loading背景画面設定　*/
+#splash {
+  /*fixedで全面に固定*/
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	background:#eee;
+	text-align:center;
+	color:#fff;
+}
+
+/* Loading画像中央配置　*/
+#splash_logo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* Loading アイコンの大きさ設定　*/
+#splash_logo svg{
+    width:300px;
+}
+
+/*=============== SVGアニメーション内の指定 =================*/
+
+/*アニメーション前の指定*/
+#mask path {
+		fill-opacity: 0;/*最初は透過0で見えない状態*/
+		transition: fill-opacity .5s;/*カラーがつく際のアニメーション0.5秒で変化*/
+		fill: none;/*塗りがない状態*/
+		stroke: #333;/*線の色*/
+	}
+
+/*アニメーション後に.doneというクラス名がで付与された時の指定*/
+#mask.done path{
+	  fill: #333;/*塗りの色*/
+	  fill-opacity: 1;/*透過1で見える状態*/
+	  stroke: none;/*線の色なし*/
+	}
+
+.loading.is-active {
+  opacity: 0;
+  visivility: hidden;
+}
