@@ -2,13 +2,13 @@
 
 @layer base {
   section {
-    @apply container px-2 mx-auto;
+    @apply container p-2 mx-auto;
   }
   h1 {
-    @apply text-3xl text-center py-4 font-bold;
+    @apply text-3xl py-4 font-bold;
   }
   h2 {
-    @apply font-bold text-2xl text-center my-6 pt-20;
+    @apply font-bold text-2xl my-6 pt-20;
   }
   h3 {
     @apply font-bold text-lg mb-2;
@@ -22,10 +22,7 @@
   i {
   @apply pr-2;
   }
-  button {
-    @apply btn-block;
   }
-}
 
 @tailwind components;
 @tailwind utilities;
