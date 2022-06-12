@@ -6,5 +6,5 @@
 4. js組み込み 参考書：[動くWebデザイン
 アイディア帳](https://coco-factory.jp/ugokuweb/)
 5. sessionStorage組み込み（アニメーション初回のみ実行）
-6. HTML完成後はWordPress実装なので以降の環境はDocker（wp-env）へ。
-7. ページネーション、パン屑リストなどのレンタルページにパーツリスト追加。
+6. 2022/6/11 HTML完成。WordPress実装フェーズはDocker（wp-env）で開発。
+7. 2022/6/12 ページネーション、パン屑リストなどのレンタルページにパーツリスト追加。
