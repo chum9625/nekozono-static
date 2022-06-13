@@ -19,7 +19,6 @@ function loadedPage() {
   const loadingID = document.getElementById("js-loading");
   loadingID.classList.add("loaded");
 }
-
 // 初回アクセス
 if(!sessionStorage.getItem('visited')) {
   sessionStorage.setItem('visited', 'first');
