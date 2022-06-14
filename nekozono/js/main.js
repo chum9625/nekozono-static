@@ -23,9 +23,9 @@ function loadedPage() {
 if(!sessionStorage.getItem('visited')) {
   sessionStorage.setItem('visited', 'first');
     $(window).on('load',function(){
+      $("#splash").delay(3000).fadeOut('slow');
       $("#splash_logo").delay(3000).fadeOut('slow')
       stroke.play();
-      $("#splash").delay(3000).fadeOut('slow');
     });
 } else {
   loadedPage();
