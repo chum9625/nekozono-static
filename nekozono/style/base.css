@@ -2,18 +2,18 @@
 
 @layer base {
   section {
-    @apply container p-2 mx-auto;
+    @apply container px-2 mx-auto;
   }
   h1 {
-    @apply text-3xl py-4 font-bold;
+    @apply text-gray-800 text-2xl sm:text-3xl font-bold text-center mb-4 md:mb-6;
   }
   h2 {
-    @apply font-bold text-2xl my-6 pt-20;
+    @apply text-gray-800 text-xl sm:text-2xl font-semibold mb-2 md:mb-4;
   }
   h3 {
     @apply font-bold text-lg mb-2;
   }
-  p {
+  h4, p {
     @apply mt-4 mb-4;
   }
   table {
