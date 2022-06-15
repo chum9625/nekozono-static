@@ -13,3 +13,4 @@
 9. デプロイはVScodeの拡張機能sftpを使う。context設定でハマる。
 10. sftp仕様上、ディレクトリ名変更あり。 src → nekozono 
 11. 2022/6/14: static公開。リンク、表示確認しながら修正作業。 WinとMacで表示違い確認、修正済み。
+12. ファビコン作成 [source](https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs)
