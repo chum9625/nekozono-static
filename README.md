@@ -16,6 +16,7 @@
 9.  static公開。リンク、表示確認しながら修正作業。 WinとMacで表示違い確認、修正済み。【↓2022.6.14↓】
 10. ファビコン配備 [source](https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs)【↓2022.6.16↓】
 11. WordPressと静的ページを共存。（やっと本題）
-    - HTML上でphpを実行するための .htaccess を配備。
+    - ~HTML上でphpを実行するための .htaccess を配備。~
     - index.html 1行目に追記。
     - 新着情報セクション（お知らせ、にゃんず）をWordPressタグで修正。
+    - ちょっと待て。REST api か？ 👈イマココ
