@@ -13,6 +13,44 @@
   <link rel="apple-touch-icon" href="./img/apple-touch-icon.png"><!-- 180×180 -->
   <link rel="manifest" href="./img/manifest.webmanifest">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script>
+    //WP REST API
+    $(function () {
+      $.ajax({
+        type: 'GET',
+        url: 'https://demo.chum9625.com/nekozono/info/wp-json/wp/v2/posts?per_page=3&_embed',
+        dataType: 'json'
+      }).done(function (json) {
+        var html = '';
+        $.each(json, function (i, row) {
+          var date_data = new Date(row.date);
+          var year = date_data.getFullYear();
+          var month = date_data.getMonth() + 1;
+          var day = date_data.getDate();
+
+          var title = row.title.rendered;
+          var link = row.link;
+          var excerpt = row.excerpt.rendered;
+          var date = year + '年' + month + '月' + day + '日';
+          var thumbnail
+          if (row['_embedded']['wp:featuredmedia']) {
+            thumbnail = row['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['thumbnail']['source_url']
+          }
+          html += '<div class="flex flex-col md:flex-row items-center gap-4 lg:gap-6">';//-- article - start --
+          html += '<a href="' + link + '" class="group w-full md:w-24 lg:w-40 h-56 md:h-24 lg:h-40 block self-start shrink-0 bg-gray-100 overflow-hidden rounded-lg shadow-lg relative"><img src="' + thumbnail + '" loading="lazy" alt="" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" /></a>';
+          html += '<div class="flex flex-col gap-2">';
+          html += '<span class="text-gray-400 text-sm">' + date + '</span>';
+          html += '<h2 class="text-gray-800 text-xl font-bold"><a href="' + link + '" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">' + title + '</a></h2>';
+          html += '<p class="text-gray-500">' + excerpt + '</p>';
+          html += '<div><a href="' + link + '" class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 font-semibold transition duration-100">続きを読む</a></div>';
+          html += '</div></div>';//-- article - end --
+        });
+        $('#wp-post').append(html)
+      }).fail(function (json) {
+        console.error('WordPressの新着情報取得に失敗しました。')
+      });
+    });
+  </script>
 </head>
 <body class="tracking-wide leading-loose" id="top">
 
@@ -92,13 +130,14 @@
               </label>
               <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                 <li tabindex="0">
-                  <a href="./#update" class="justify-between">
+                  <a class="justify-between">
                     新着情報
                     <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                       <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                     </svg>
                   </a>
                   <ul class="p-2 bg-slate-50">
+                    <li><a href="./#update">最新3件</a></li>
                     <li><a href="./info/notice/">お知らせ</a></li>
                     <li><a href="./info/cats/">にゃんず</a></li>
                     <li><a href="./#schedule">スケジュール</a></li>
@@ -106,13 +145,14 @@
                 </li>
                 <li><a href="./#price">料金表</a></li>
                 <li tabindex="0">
-                  <a href="./#shopinfo" class="justify-between">
+                  <a class="justify-between">
                     店舗について
                     <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                       <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                     </svg>
                   </a>
                   <ul class="p-2 bg-slate-50">
+                    <li><a href="./#shopinfo">店舗情報</a></li>
                     <li><a href="./vision.html">ビジョン</a></li>
                     <li><a href="./notes.html">ご利用規約</a></li>
                     <li><a href="./lental.html">レンタルスペース</a></li>
@@ -125,13 +165,14 @@
           <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal p-0">
               <li tabindex="0">
-                <a href="./#update">
+                <a>
                   新着情報
                   <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                     <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                   </svg>
                 </a>
                 <ul class="p-2 bg-slate-50">
+                  <li><a href="./#update">最新3件</a></li>
                   <li><a href="./info/notice/">お知らせ</a></li>
                   <li><a href="./info/cats/">にゃんず</a></li>
                   <li><a href="./#schedule">スケジュール</a></li>
@@ -140,13 +181,14 @@
               <li><a href="./#price">料金表</a></li>
               <ul class="menu menu-horizontal p-0">
                 <li tabindex="0">
-                  <a href="./#shopinfo">
+                  <a>
                     店舗について
                     <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                       <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                     </svg>
                   </a>
                   <ul class="p-2 bg-slate-50">
+                    <li><a href="./#shopinfo">店舗情報</a></li>
                     <li><a href="./vision.html">ビジョン</a></li>
                     <li><a href="./notes.html">ご利用規約</a></li>
                     <li><a href="./lental.html">レンタルスペース</a></li>
@@ -189,57 +231,19 @@
         </h2>
       <!-- ***** ↑ contents mark ↑ ***** -->
 
-<!-- ===== blog section start ===== -->
-<section>
-  <div class="bg-white py-6 sm:py-8 lg:py-12">
-    <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 sm:gap-12 xl:gap-16">
+      <!-- ===== blog section start ===== -->
+      <section>
+        <div class="bg-white py-6 sm:py-8 lg:py-12">
+          <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 sm:gap-12 xl:gap-16">
 
-<script>
-//WP REST API
-$(function(){
-  $.ajax({
-    type: 'GET',
-    url: 'https://demo.chum9625.com/nekozono/info/wp-json/wp/v2/posts?per_page=3&_embed',
-    dataType: 'json'
-   }).done(function(json) {
-    var html = '';
-    $.each(json, function( i, row ) {
-      var date_data = new Date(row.date);
-      var year = date_data.getFullYear();
-      var month = date_data.getMonth() + 1;
-      var day = date_data.getDate();
+              <div id="wp-post"></div><!-- API output -->
 
-      var title = row.title.rendered;
-      var link = row.link;
-      var excerpt = row.excerpt.rendered;
-      var date = year + '年' + month + '月' + day + '日';
-      var thumbnail
-      if( row['_embedded']['wp:featuredmedia'] ) {
-        thumbnail = row['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['thumbnail']['source_url']
-      }
-      html += '<div class="flex flex-col md:flex-row items-center gap-4 lg:gap-6">';//-- article - start --
-      html += '<a href="' + link + '" class="group w-full md:w-24 lg:w-40 h-56 md:h-24 lg:h-40 block self-start shrink-0 bg-gray-100 overflow-hidden rounded-lg shadow-lg relative"><img src="' + thumbnail +'" loading="lazy" alt="" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" /></a>';
-      html += '<div class="flex flex-col gap-2">';
-      html += '<span class="text-gray-400 text-sm">' + date +'</span>';
-      html += '<h2 class="text-gray-800 text-xl font-bold"><a href="' + link + '" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">' + title + '</a></h2>';
-      html += '<p class="text-gray-500">' + excerpt + '</p>';
-      html += '<div><a href="' + link + '" class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 font-semibold transition duration-100">`続きを読む</a></div></div></div></div></div>';//-- article - end --
-    });
-    $('#wp-post').append(html)
-  }).fail(function (json) {
-    console.error('WordPressの新着情報取得に失敗しました。')
-  });
-});
-</script>
-<div id="wp-post"></div><!-- API output -->
-
-</div>
-</section>
-<!-- ===== blog section end ===== -->
-
-
-
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== blog section end ===== -->
 
       <!-- ***** ↓ contents mark ↓ ***** -->
       <div id="schedule" class="py-10"></div>
