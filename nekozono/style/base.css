@@ -11,10 +11,10 @@
     @apply text-gray-800 text-xl sm:text-2xl font-semibold mb-2 md:mb-4;
   }
   h3 {
-    @apply font-bold text-lg mb-2;
+    @apply font-bold text-base md:text-lg mb-2;
   }
   h4, p {
-    @apply mt-4 mb-4;
+    @apply text-sm md:text-base mt-4 mb-4;
   }
   table {
   @apply table w-full text-center;
@@ -110,6 +110,7 @@ split-left__content-wrap
 }
 .split-left__content__center__logo {
   margin: 0 auto 40px;
+  width: 64px;
 }
 .split-left__content__center__title {}
 
@@ -169,7 +170,9 @@ split-left__content-wrap
 .split-left__content-wrap {}
 .split-left__content__inner {}
 .split-left__content__inner__center {}
-.split-left__content__center__logo {}
+.split-left__content__center__logo {
+  width: 48px;
+}
 .split-left__content__center__title {}
 
 /***********************
