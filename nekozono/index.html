@@ -32,18 +32,24 @@
           var link = row.link;
           var excerpt = row.excerpt.rendered;
           var date = year + '年' + month + '月' + day + '日';
+          var category = row.category_name;
           var thumbnail
           if (row['_embedded']['wp:featuredmedia']) {
             thumbnail = row['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['thumbnail']['source_url']
           }
-          html += '<div class="flex flex-col md:flex-row items-center gap-4 lg:gap-6">';//-- article - start --
+
+          html += '<div class="mb-4 card w-fit bg-base-100 shadow-xl">';
+          // html += '<figure><img src="' + thumbnail + '" loading="lazy" alt="" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" /></figure>';
           html += '<a href="' + link + '" class="group w-full md:w-24 lg:w-40 h-56 md:h-24 lg:h-40 block self-start shrink-0 bg-gray-100 overflow-hidden rounded-lg shadow-lg relative"><img src="' + thumbnail + '" loading="lazy" alt="" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" /></a>';
-          html += '<div class="flex flex-col gap-2">';
+          html += '<div class="card-body">';
           html += '<span class="text-gray-400 text-sm">' + date + '</span>';
-          html += '<h2 class="text-gray-800 text-xl font-bold"><a href="' + link + '" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">' + title + '</a></h2>';
+          html += '<div class="flex justify-between items-end mt-auto">';
+          html += '<h2 class="mb-1 md:mb-2 text-gray-800 text-xl font-bold"><a href="' + link + '" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">' + title + '</a></h2>';
+          html += '<span class="text-gray-500 text-sm border rounded px-2 py-1">' + category + '</span></div>';
           html += '<p class="text-gray-500">' + excerpt + '</p>';
-          html += '<div><a href="' + link + '" class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 font-semibold transition duration-100">続きを読む</a></div>';
-          html += '</div></div>';//-- article - end --
+          html += '<div class="card-actions justify-end">';
+          html += '<a href=" ' + link + ' " class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 font-semibold transition duration-100">続きを読む</a>'
+          html +=  '</div></div></div>';
         });
         $('#wp-post').append(html)
       }).fail(function (json) {
@@ -227,23 +233,18 @@
 
       <!-- ***** ↓ contents mark ↓ ***** -->
       <div id="update" class="py-10"></div>
-      <h2 class="text-center"><i class="fa-solid fa-paw"></i>新着情報
-        </h2>
+      <h2 class="text-center"><i class="fa-solid fa-paw"></i>新着情報</h2>
       <!-- ***** ↑ contents mark ↑ ***** -->
 
-      <!-- ===== blog section start ===== -->
+      <!-- ===== api section start ===== -->
       <section>
-        <div class="bg-white py-6 sm:py-8 lg:py-12">
-          <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
-            <div class="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 sm:gap-12 xl:gap-16">
-
-              <div id="wp-post"></div><!-- API output -->
-
-            </div>
+        <div class="py-6 sm:py-8 lg:py-12">
+          <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
+            <div id="wp-post"></div><!-- API output -->
           </div>
         </div>
       </section>
-      <!-- ===== blog section end ===== -->
+      <!-- ===== api section end ===== -->
 
       <!-- ***** ↓ contents mark ↓ ***** -->
       <div id="schedule" class="py-10"></div>
