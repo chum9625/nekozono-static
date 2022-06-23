@@ -1,4 +1,12 @@
-# History
+# Concept
+
+- 静的サイトとWordPressが共存するハイブリットの架空サイトのStatic側です。
+- コンセプトは制作者とクライアントで管理を切り分けること。
+- サイト訪問時のロゴアニメーションはセッション中1回のみ実行します。
+- トップページのWordPress最新記事をWP REST APIで読み込んでいます。
+
+## History
+
 1. サイト設計開始（Wireフレーム、簡易デザイン） ツール：XD【↓2022.5.25↓】
   - [初期デザイン案1280w](https://xd.adobe.com/view/193944f9-4114-4ae5-bb9f-5cd4284df7d6-4c6a/?fullscreen)
   - [初期デザイン案375w](https://xd.adobe.com/view/e0d61eca-fe49-4461-8113-8ac5e36b7315-b585/?fullscreen)
