@@ -1,3 +1,5 @@
+'use strict';
+
 //SVGアニメーションの描画
 var stroke;
 stroke = new Vivus('mask', {//アニメーションをするIDの指定
@@ -12,21 +14,19 @@ stroke = new Vivus('mask', {//アニメーションをするIDの指定
     }
 );
 
-$(function() {
-  var webStorage = function () {
-    if(sessionStorage.getItem('visited')) {
-      // 2回目以降アクセス
-    $(".loading").addClass('is-active');
-  } else {
-    // 初回アクセス
-    sessionStorage.setItem('visited', 'true');
-
+// 2回目以降アクセス
+function loadedPage() {
+  const loadingID = document.getElementById("js-loading");
+  loadingID.classList.add("loaded");
+}
+// 初回アクセス
+if(!sessionStorage.getItem('visited')) {
+  sessionStorage.setItem('visited', 'first');
     $(window).on('load',function(){
+      $("#splash").delay(3000).fadeOut('slow');
       $("#splash_logo").delay(3000).fadeOut('slow')
       stroke.play();
-      $("#splash").delay(3000).fadeOut('slow');
     });
-  }
+} else {
+  loadedPage();
 }
-  webStorage();
-});

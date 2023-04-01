@@ -1,7 +1,7 @@
 module.exports = {
   mode: "jit",
   content: [
-    "./src/**/*.{html,js}",
+    "./nekozono/**/*.{html,js}",
   ],
   plugins: [
     require("daisyui")
